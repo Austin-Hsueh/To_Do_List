@@ -1,0 +1,26 @@
+<ul>
+	<% @todolists.each do |todolist| %>
+    <li> 
+    	<%= todolist.to_do_name %>
+    	<%= todolist.due_date %>
+    	<%= link_to("顯示待辦細項"	, todolist_path(todolist))	%>
+    	<%= link_to("更新待辦細項"	, edit_todolist_path(todolist)) %>
+    	<% if (todolist.due_date > Date.today) || (todolist.due_date == Date.today) %>
+    		<%= link_to("刪除", todolist_path(todolist), method: :delete, data:{ confirm: "掰掰，不再考慮一下嗎？" })%>
+			<% end %> 
+    </li>
+	<% end %>
+</ul>
+
+<%= form_for @newtodolist do |f|%>
+	<%= f.label :to_do_name, "請輸入待辦事項" %>
+	<%= f.text_field :to_do_name %>
+
+	<%= f.label :due_date, "請輸入到期日" %>
+	<%= f.text_field :due_date %>
+
+	<%= f.label :note, "請輸入代辦細項" %>
+	<%= f.text_area :note %>
+
+	<%= f.submit "新增一筆待辦事項" %>
+<% end %>

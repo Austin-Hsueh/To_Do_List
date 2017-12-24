@@ -1,0 +1,16 @@
+<%= @todolist.to_do_name %>
+<%= @todolist.due_date %>
+<%= @todolist.note %>
+
+<%= form_for @todolist do |f|%>
+	<%= f.label :to_do_name, "請更新待辦事項" %>
+	<%= f.text_field :to_do_name %>
+
+	<%= f.label :due_date, "請更新到期日" %>
+	<%= f.text_field :due_date %>
+
+	<%= f.label :note, "請更新代辦細項" %>
+	<%= f.text_area :note %>
+
+	<%= f.submit "更新此筆待辦事項" %>
+<% end %>
